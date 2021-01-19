@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { postOrder } from "../../apiCalls"
 
 const OrderForm = ({setOrders, orders}) => {
   const [name, setName] = useState("");
@@ -9,6 +10,7 @@ const OrderForm = ({setOrders, orders}) => {
    
     if (ingredients.length === 0) {
       alert("Must select an ingredient")
+      return;
     } 
 
     const newOrder = {
@@ -17,6 +19,8 @@ const OrderForm = ({setOrders, orders}) => {
       ingredients: ingredients
     }
 
+    postOrder(newOrder)
+      
     // POST newOrder if post works then setOrders
 
     setOrders([...orders, newOrder])
@@ -29,6 +33,7 @@ const OrderForm = ({setOrders, orders}) => {
     setIngredients([]);
   }
 
+  // CAN I REFACTOR THIS???
   const possibleIngredients = [
     "beans",
     "steak",
@@ -76,8 +81,9 @@ const OrderForm = ({setOrders, orders}) => {
         {ingredientButtons}
       </section>
 
-      <p>Order: 
-        {ingredients.join(", ") || "Nothing selected"}
+      <p>Order:  
+      <br></br>
+        { ingredients.join(", ") || " Nothing selected"}
       </p>
 
       <br></br>
