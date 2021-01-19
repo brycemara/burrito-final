@@ -18,7 +18,7 @@ function App() {
     <main className="App">
       <header>
         <h1>Burrito Builder</h1>
-        <OrderForm />
+        <OrderForm setOrders={setOrders} orders={orders} />
       </header>
       <Orders orders={orders}/>
     </main>
