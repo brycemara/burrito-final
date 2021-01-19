@@ -4,7 +4,7 @@ export const getOrders = () => {
 }
 
 export const postOrder = (newOrder) => {
-  fetch('http://localhost:3001/api/v1/orders', {
+  return fetch('http://localhost:3001/api/v1/orders', {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'
@@ -13,6 +13,4 @@ export const postOrder = (newOrder) => {
   })
   .then(response => response.json())
   .catch(error => console.log(error))
-  
-  
 }

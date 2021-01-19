@@ -20,10 +20,7 @@ const OrderForm = ({setOrders, orders}) => {
     }
 
     postOrder(newOrder)
-      
-    // POST newOrder if post works then setOrders
-
-    setOrders([...orders, newOrder])
+      .then(setOrders([...orders, newOrder]))
 
     clearInputs();
   }
