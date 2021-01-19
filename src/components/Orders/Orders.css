@@ -5,6 +5,10 @@
   background-color: #FFF;
 }
 
+button {
+  margin: 5px;
+}
+
 .ingredient-list {
   list-style-type: none;
   padding: 0;

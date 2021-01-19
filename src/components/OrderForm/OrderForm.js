@@ -5,13 +5,19 @@ const OrderForm = ({setOrders, orders}) => {
   const [ingredients, setIngredients] = useState([]);
 
   const handleSubmit = (event) => {
-    debugger
     event.preventDefault();
+   
+    if (ingredients.length === 0) {
+      alert("Must select an ingredient")
+    } 
 
     const newOrder = {
+      id: Date.now(),
       name: name,
       ingredients: ingredients
     }
+
+    // POST newOrder if post works then setOrders
 
     setOrders([...orders, newOrder])
 
@@ -42,8 +48,9 @@ const OrderForm = ({setOrders, orders}) => {
     return (
       <button
         key={ingredient}
+        type="button"
         value={ingredient}
-        onClick={(event) => setIngredients(event.target.value)}
+        onClick={(event) => setIngredients([...ingredients, event.target.value ])}
       >
         {ingredient}
       </button>
@@ -51,7 +58,8 @@ const OrderForm = ({setOrders, orders}) => {
   });
 
   return (
-    <form>
+    <form onSubmit={(event) => handleSubmit(event)}>
+      <label htmlFor="name">Name: </label>
       <input
         type="text"
         placeholder="Name"
@@ -61,14 +69,19 @@ const OrderForm = ({setOrders, orders}) => {
         required
       />
 
-      {ingredientButtons}
+      <br></br>
 
-      {/* <p>Order: 
-        {ingredients || "Nothing selected"}
+      <label htmlFor="ingredients">Ingredients: </label>
+      <section>
+        {ingredientButtons}
+      </section>
 
-      </p> */}
+      <p>Order: 
+        {ingredients.join(", ") || "Nothing selected"}
+      </p>
 
-      <button onClick={(event) => handleSubmit(event)}>Submit Order</button>
+      <br></br>
+      <button>Submit</button>
     </form>
   );
 };
